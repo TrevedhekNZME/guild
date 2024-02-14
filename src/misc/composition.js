@@ -2,62 +2,28 @@
 console.clear();
 console.log(Date.now());
 
-const sum = (a, b=0, c=0) => a + b + c;
-const increment = x => x + 1;
-const double = x => x + x;
-const square = x => x * x; // or x => x**2
+// chain(10).add(-4).multiply(7).result()
+// chain(12).multiply(10).add(3).result()
 
-function basic(...x) {
-  const result = square(double(increment(sum(...x))));
-  console.log(x, result);
-}
+// const add = a => n => n + a;
+const add = a => n => n + a;
+const multiply = m => n => m * n;
 
-console.log("basic");
-basic(1,2,3);
-basic(2);
-basic(3);
+console.log(
+  multiply(7)(add(-4)(10))
+);
 
-function pipe(...fns) {
-  return (...x) => {
-    const result = fns.reduce((y, f) => [f(...y)], x);
-    console.log(x, result);
-  }
-}
-
-console.log("pipe");
-const doPipe = pipe(sum, increment, double, square);
-doPipe(1,2,3);
-doPipe(2);
-doPipe(3);
-
-
+// ------------------------------- //
 
 function compose(...fns) {
-  return x => {
-    const result = fns.reduceRight((y, f) => f(y), x);
-    console.log(x, result);
-  }
+  return x => fns.reduceRight((y, f) => f(y), x);
 }
 
-console.log("compose");
-const composed = compose(square, double, increment);
-composed(1);
-composed(2);
-composed(3);
+// console.log("compose");
 
-
-
-// function resolve(x) {
-//   return Promise.resolve(x)
-//   .then(increment)
-//   .then(double)
-//   .then(square)
-//   .then(result => {
-//     console.log(x, result);
-//   })
-// }
-
-// console.log("resolve");
-// resolve(1);
-// resolve(2);
-// resolve(3);
+console.log(
+  compose(multiply(7), add(-4))(10)
+);
+// console.log(
+//   compose(add(3), multiply(10))(12)
+// );
