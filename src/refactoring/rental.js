@@ -1,12 +1,12 @@
-export default function createRental(movieID, daysRented) {
+export default function createRental(movieId, daysRented) {
 
-  return Object.freeze({
-    daysRented, movieID, TYPE: "RENTAL"
-  });
+  // return Object.freeze({
+  //   days: daysRented, movieID: movieId, TYPE: "RENTAL"
+  // });
 
-  // return {
-  //   get daysRented() { return daysRented; },
-  //   get movieID() { return movieId; },
-  //   get TYPE () { return "RENTAL"; }
-  // }
+  return {
+    get days() { return daysRented; },
+    get movieID() { return movieId; },
+    get TYPE () { return "RENTAL"; }
+  }
 }

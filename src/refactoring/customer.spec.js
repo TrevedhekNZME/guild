@@ -3,8 +3,8 @@ import createRental from "./rental";
 import createMovie from "./movie";
 
 const testMovies = [
-  createMovie("ABC", "childrens"),
-  createMovie("XXX", "regular"),
+  createMovie("KID", "childrens"),
+  createMovie("REG", "regular"),
   createMovie("NEW", "new-release")
 ];
 const testRentals = [
@@ -33,10 +33,10 @@ describe("Customer", () => {
     console.log([actual]);
     const expected = [
       `Rental Record for Bill Brown\n`,
-      `\tABC\t1.5\n`,
-      `\tXXX\t2`,
-      `\n\tNEW\t0\n`,
-      `Amount owed is 3.5\n`,
+      `\tKID\t4.5\n`,
+      `\tREG\t2\n`,
+      `\tNEW\t9\n`,
+      `Amount owed is 15.5\n`,
       `You earned 3 frequent renter points\n`
     ].join("");
     expect(actual).toEqual(expected);

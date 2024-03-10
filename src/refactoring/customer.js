@@ -16,7 +16,7 @@ function makeStatement(customer) {
           thisAmount += (r.days - 2) * 1.5;
         }
         break;
-      case "new":
+      case "new-release":
         thisAmount = r.days * 3;
         break;
       case "childrens":
