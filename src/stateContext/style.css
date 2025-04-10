@@ -1,0 +1,20 @@
+body {
+  margin-left: 3rem;
+}
+.granny {
+  margin-left: 1rem;
+  padding: 1rem;
+  border: solid thin silver;
+}
+.parent {
+  margin-left: 1rem;
+  padding: 0 1rem;
+  background-color: #ddd;
+  border: solid thin blue;
+}
+.child {
+  padding: 0.5rem;
+  margin: 0.5rem;
+  background-color: #fff;
+  border: solid thin black;
+}

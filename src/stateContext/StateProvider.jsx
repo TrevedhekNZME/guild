@@ -1,7 +1,8 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 import { createContext, useContext } from 'react';
 
-const StateContext = createContext({});
+const StateContext = createContext(null);
 
 export const StateProvider = (props) => (
   <StateContext.Provider value={props.theData}>
@@ -9,8 +10,7 @@ export const StateProvider = (props) => (
   </StateContext.Provider>
 )
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const useDataContext = () => {
+export const useStateContext = () => {
   const data = useContext(StateContext);
   if (!data) {
     throw new Error("Oops, are you using StateProvider?");
