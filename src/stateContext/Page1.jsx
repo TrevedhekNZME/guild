@@ -26,6 +26,7 @@ export default function Page1() {
   return (
     <Profiler id="state-provider" onRender={onRender}>
       <StateProvider theData={theData}>
+        <h1>V1</h1>
         <GrandParent />
       </StateProvider>
     </Profiler>
