@@ -1,28 +1,50 @@
 /* eslint-disable react/prop-types */
 import { Profiler, useCallback } from 'react';
 import './style.css';
-import { StateProvider, useStateContext } from './StateProvider';
+import { getStore, StateProvider, useStateContext, VER } from './StateProvider';
 import { Parent, RandomDiv } from './Family';
 
 function onRender(id, phase, actual) {
-  console.log(`${id}:${phase} = ${Math.round(actual*1000)} micros`);
+  console.log(`${id}:${phase} = ${Math.round(actual)} ms`);
 }
 ///////////////////////////////////////
 export default function Page() {
 
   return (
-    <StateProvider>
-      <h1>V1</h1>
-      <Profiler id="state-provider" onRender={onRender}>
+    <Profiler id="state-provider" onRender={onRender}>
+      <StateProvider>
+        <RandomDiv id="version">Version {VER}</RandomDiv>
         <Parent />
-        <Reload />
-      </Profiler>
-    </StateProvider>
+        {VER===1 && <Reload1 />}
+        {VER > 1 && <Reload2 />}
+      </StateProvider>
+    </Profiler>
   );
 }
 
-const Reload = () => {
+const Reload1 = () => {
   const { dispatch } = useStateContext();
-  const doClick = useCallback(() => dispatch({ type: "reload" }), [dispatch]);
-  return <RandomDiv><button onClick={doClick}>Reload Data</button></RandomDiv>
+  const doClick = useCallback(() => {
+    console.clear();
+    dispatch({ type: "reload" });
+  }, [dispatch]);
+  return (
+    <RandomDiv id="reload-button">
+      <p>Version {VER}</p>
+      <button onClick={doClick}>Reload Data</button>
+    </RandomDiv>
+  );
+}
+const Reload2 = () => {
+  const { dispatch } = getStore();
+  const doClick = useCallback(() => {
+    console.clear();
+    dispatch({ type: "reload" });
+  }, [dispatch]);
+  return (
+    <RandomDiv id="reload-button">
+      <p>Version {VER}</p>
+      <button onClick={doClick}>Reload Data</button>
+    </RandomDiv>
+  );
 }

@@ -30,7 +30,7 @@ describe("Customer", () => {
     const customer = createCustomer("Bill Brown");
     testRentals.forEach(rental => customer.addRental(rental));
     const actual = customer.statement();
-    console.log([actual]);
+    // console.log([actual]);
     const expected = [
       `Rental Record for Bill Brown\n`,
       `\tKID\t4.5\n`,
